@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../Styles/main.css'
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
+import ChangeColor from './ChangeColor';
 
 class App extends Component{
 
@@ -49,6 +50,8 @@ class App extends Component{
         <AddTodo  handleSubmit={this.handleSubmit}/>
 
         <TodoList className='scroller' handleDelete={this.handleDelete} todoList={ this.state.todoList}/>
+        <ChangeColor />
+
 
       </main>
     );
