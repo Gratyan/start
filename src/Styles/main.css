@@ -35,6 +35,7 @@
     max-width: 50vw;
     height: 400px;
     flex-wrap: wrap;
+    
 }
 .TodoItem_item{
     margin-left: 10px;

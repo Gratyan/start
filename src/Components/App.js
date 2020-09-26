@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import '../Styles/main.css'
+import axios from 'axios';
+import '../Styles/main.css';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
-import ChangeColor from './ChangeColor';
 
 class App extends Component{
 
@@ -11,7 +11,26 @@ class App extends Component{
 
     this.state = {
       todoList : [],
+      toggle : false,
     }
+  }
+
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_start=0&_limit=5')
+      .then(resp => {
+        const elements = resp.data;
+        const fetchedTodoList = [];
+
+        elements.forEach((todo)=>{
+          fetchedTodoList.push({
+            text: todo.title,
+            todoId: todo.id,
+          })
+          this.todoId++
+        })
+
+        this.setState({todoList: fetchedTodoList});
+      });
   }
 
   todoId = 1;
@@ -23,19 +42,19 @@ class App extends Component{
         todoId: this.todoId,
         }
         , ...this.state.todoList],
-    })
-    this.todoId++
+    });
+    this.todoId++;
   }
 
   handleDelete = (id) => {
     const shallowList = this.state.todoList.filter((todo)=>{
       return (todo.todoId !== id);
-    })
+    });
     this.setState({
       todoList : [...shallowList]
-    })
-    console.log("delete item with :", id)
-  }
+    });
+    // console.log("delete item with :", id);
+  };
 
   render() {
 
@@ -45,13 +64,16 @@ class App extends Component{
       <main className='App_wrapper'>
         <header className='App_header'>
           <h1>Todo List</h1>
+          <button onClick={()=>{
+            this.setState({
+              toggle : !this.state.toggle
+            })
+          }}>Toggle</button>
         </header>
 
         <AddTodo  handleSubmit={this.handleSubmit}/>
 
-        <TodoList className='scroller' handleDelete={this.handleDelete} todoList={ this.state.todoList}/>
-        <ChangeColor />
-
+        <TodoList handleDelete={this.handleDelete} todoList={ this.state.todoList}/>
 
       </main>
     );

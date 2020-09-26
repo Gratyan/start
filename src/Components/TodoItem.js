@@ -3,8 +3,6 @@ import {IconDelete} from "../SVG/Icons";
 
 export default class TodoItem extends Component{
 
-
-
   render() {
 
     return(
@@ -17,4 +15,3 @@ export default class TodoItem extends Component{
     )
   }
 }
-
