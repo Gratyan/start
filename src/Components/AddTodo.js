@@ -7,7 +7,6 @@ export default class AddTodo extends Component{
 
     this.state = {
       text : '',
-
     }
   }
 
@@ -25,10 +24,18 @@ export default class AddTodo extends Component{
       this.setState({text : ''});
     }
   };
-
+ 
+  // inputStart = () => {
+  //     setTimeout(() => {
+  //     this.setState({inputMode: "enabled"});
+  //   },5000);
+  //   return(this.state.inputMode)
+  // };
+    
+          
+    
   render() {
 
-    // console.log('AddTodo Render')
 
     return(
       <form className='AddTodo_form' onSubmit={this.handleSubmit}>
@@ -36,6 +43,9 @@ export default class AddTodo extends Component{
                placeholder='Enter Todo'
                onChange={this.handleChange}
                value={this.state.text}
+               
+               
+               
         />
         <button onClick={this.handleSubmit}>Add</button>
       </form>

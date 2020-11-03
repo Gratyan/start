@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../Styles/main.css';
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
+import GitCrated from './GitCrated';
 
 class App extends Component{
 
@@ -64,6 +65,7 @@ class App extends Component{
       <main className='App_wrapper'>
         <header className='App_header'>
           <h1>Todo List</h1>
+          {/* <GitCrated /> */}
           <button onClick={()=>{
             this.setState({
               toggle : !this.state.toggle
@@ -71,9 +73,10 @@ class App extends Component{
           }}>Toggle</button>
         </header>
 
-        <AddTodo  handleSubmit={this.handleSubmit}/>
+        <AddTodo handleSubmit={this.handleSubmit}/>
 
         <TodoList handleDelete={this.handleDelete} todoList={ this.state.todoList}/>
+        {/* <GitCrated /> */}
 
       </main>
     );
